@@ -1,0 +1,28 @@
+{
+  "name": "meraki-2026",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "15.5.23",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "gsap": "3.12.5",
+    "lenis": "1.1.18",
+    "lucide-react": "0.469.0"
+  },
+  "devDependencies": {
+    "typescript": "5.7.3",
+    "@types/node": "20.17.12",
+    "@types/react": "18.3.18",
+    "@types/react-dom": "18.3.5",
+    "tailwindcss": "3.4.17",
+    "postcss": "8.4.49",
+    "autoprefixer": "10.4.20"
+  }
+}

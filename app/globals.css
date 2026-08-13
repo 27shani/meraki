@@ -1,0 +1,129 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --coral: #fb575f;
+  --coral-light: #ff7d8a;
+  --purple: #8f53fc;
+  --purple-light: #a880ff;
+  --ink: #191818;
+  --paper: #fffefa;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+/* Dark theme is the default canvas across the whole site. */
+body {
+  background-color: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-urbanist), system-ui, sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--coral);
+  color: var(--paper);
+}
+
+/* Urbanist (secondary) is the workhorse typeface everywhere — headings
+   included. Merriweather (primary) is reserved for italic emphasis words
+   inside a line, per the new art direction, so it is applied deliberately
+   via .font-serif rather than globally on heading tags. */
+.font-serif {
+  font-family: var(--font-merriweather), Georgia, serif;
+}
+
+/* Shorthand for the "emphasis word" pattern used throughout: Merriweather,
+   italic, slightly lighter color than surrounding text. */
+.em {
+  font-family: var(--font-merriweather), Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* Focus states — accessible, visible, on-brand */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--coral);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Film-grain overlay used sparingly on dark sections */
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  z-index: 1;
+}
+
+/* Gradient text — used sparingly; coral leads, purple only as a trailing accent */
+.gradient-text {
+  background: linear-gradient(90deg, var(--coral) 0%, var(--purple) 130%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Countdown flip digit */
+.flip-digit {
+  position: relative;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* Marquee for investor wall */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 38s linear infinite;
+}
+
+/* Dot-matrix texture — footer accent, echoes the reference site's world-map
+   halftone. Pure CSS radial-gradient tiling, no image asset required. */
+.dot-matrix {
+  background-image: radial-gradient(rgba(251, 87, 95, 0.55) 1px, transparent 1.4px);
+  background-size: 7px 7px;
+}
+
+/* Reduced motion: strip heavy movement, keep fades */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-marquee {
+    animation: none !important;
+  }
+}
+
+/* Custom thin scrollbar for accordion/panels if needed */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
